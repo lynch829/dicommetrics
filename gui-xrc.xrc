@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- design layout in a separate XML file -->
+<resource>
+    <object class="wxFrame" name="MainFrame">
+        <title>DICOM Metrics</title>
+        <object class="wxSplitterWindow" name="splitter">
+            <object class="wxPanel" name="UpperPanel">
+                <menubar>
+                </menubar>
+                <toolbar>
+                </toolbar>
+                <object class="wxBoxSizer" name="MainArea">
+                    <orient>wxVERTICAL</orient>
+                    <object class="sizeritem">
+                        <borderbox>
+                            <object class="wxGridSizer" name="InfoArea">
+                                <rows>3</rows>
+                                <cols>4</cols>
+                            </object>
+                        </borderbox>
+                    </object>
+                    <object class="sizeritem">
+                        <notebook>
+                        </notebook>
+                    </object>
+                </object>
+            </object>
+            <object class="wxPanel" name="LowerPanel">
+                <object class="wxBoxSizer" name="StatusArea">
+                    <orient>wxVertical</orient>
+                    <object class="sizeritem">
+                        <object class="wxBoxSizer" name="StatusTitle">
+                            <orient>wxHORZONTAL</orient>
+                            <object class="sizeritem">
+                                <object class="wxStaticText" name="StatusLabel">
+                                    <label> Status Messages:</label>
+                                </object>
+                                <proportion>1</proportion>
+                            </object>
+                            <object class="sizeritem">
+                                <object class="wxBitmapButton" name="StatusSave">
+                                    <bitmap>self.SavePatientResultsMenuBMP</bitmap>
+                                    <size>=(16,16)</size>
+                                    <style>0</style>
+                                </object>
+                                <proportion>0</proportion>
+                            </object>
+                        </object>
+                        <proportion>0</proportion>
+                        <flag>wxEXPAND</flag>
+                    </object>
+                    <object class="sizeritem">
+                        <object class="wxTextCtrl" name="StatusBox">
+                            <size>(728,100)</size>
+                            <style>wx.TE_MULTILINE|wx.TE_READONLY|wx.HSCROLL|wx.TE_DONTWRAP</style>
+                        </object>
+                        <proportion>1</proportion>
+                        <flag>wxEXPAND</flag>
+                    </object>
+                </object>
+            </object>
+        </object>
+    </object>
+</resource>

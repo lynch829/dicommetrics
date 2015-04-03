@@ -1,0 +1,58 @@
+Name     Test
+Date     7 Feb 2014
+Clinic   NCMC
+RadOnc   Dr. Fuller
+Site     Prostate
+Modality SBRT
+Delivery VMAT
+Energy   6X
+TPS      Pinnacle
+
+Standard
+ROI1 D[max]  < 45
+ROI2 D[50%]  < lambda (10/2)+(10/2)*math.tanh(-(x-30))
+ROI3 D[30cc] < linear 20,10 24,8 26,2 30,0
+ROI4 V[98%]  > cubic  20,0 24,2 26,8 30,10
+ROI6 v[30Gy] > file   sample.metric
+
+Custom
+ROI1 D[max]  < 45
+ROI2 D[50%]  < lambda (10/2)+(10/2)*math.tanh(-(x-30))
+ROI3 D[30cc] < linear 20,10 24,8 26,2 30,0
+ROI4 V[98%]  > cubic  20,0 24,2 26,8 30,10
+ROI6 v[30Gy] > file   sample.metric
+
+END
+
+
+example sigmoid functions:
+
+Symmetric:
+    arctanh:   (10/2)+(10/2)*math.tanh(-(x-30))
+               (10/2)-(10/2)*math.tanh(-(x-30))
+    arctan:    (10/2)+(10/2)*(2/pi)*math.atan(-(x-30))
+               (10/2)-(10/2)*(2/pi)*math.atan(-(x-30))
+    logistic:  10/(1+math.exp(-(x-30)))
+               10-10/(1+math.exp(-(x-30)))
+    algebraic: (10/2)+(10/2)*(x-30)/sqrt(1+(x-30)^2)
+               (10/2)-(10/2)*(x-30)/sqrt(1+(x-30)^2)
+
+Asymmetric:
+    gompertz: 10*math.exp(-math.exp(-(x-30)))
+              10-10*math.exp(-math.exp(-(x-30)))
+
+
+s:
+
+    Y(t) = A + { K-A \over (1 + Q e^{-B(t - M)}) ^ {1 / \nu} }
+
+where Y = weight, height, size etc., and t = time.
+
+It has six parameters:
+
+    A: the lower asymptote;
+    K: the upper asymptote. If A=0 then K is called the carrying capacity;
+    B: the growth rate;
+    \nu > 0 : affects near which asymptote maximum growth occurs.
+    Q: depends on the value Y(0)
+    M: the time of maximum growth if Q = \nu
